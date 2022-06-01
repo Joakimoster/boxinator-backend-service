@@ -6,19 +6,22 @@ public class Box {
 
     private String name;
 
-    private int weight; //Could be double as data type.
+    private double weight;
 
-    private String country; //Could be implemented as an Enum.
+    private String color;
 
-    private int shippingCost; //Could be double as data type.
+    private Country country;
+
+    private double shippingCost;
 
     public Box() {
     }
 
-    public Box(Long id, String name, int weight, String country, int shippingCost) {
+    public Box(Long id, String name, double weight, String color, Country country, double shippingCost) {
         this.id = id;
         this.name = name;
         this.weight = weight;
+        this.color = color;
         this.country = country;
         this.shippingCost = shippingCost;
     }
@@ -39,27 +42,35 @@ public class Box {
         this.name = name;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public String getCountry() {
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
-    public int getShippingCost() {
+    public double getShippingCost() {
         return shippingCost;
     }
 
-    public void setShippingCost(int shippingCost) {
+    public void setShippingCost(double shippingCost) {
         this.shippingCost = shippingCost;
     }
 }
