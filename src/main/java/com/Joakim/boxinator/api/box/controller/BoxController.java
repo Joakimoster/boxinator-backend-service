@@ -1,6 +1,6 @@
 package com.Joakim.boxinator.api.box.controller;
 
-import com.Joakim.boxinator.api.box.controller.dto.BoxResponseDto;
+import com.Joakim.boxinator.api.box.controller.dto.BoxDto;
 import com.Joakim.boxinator.api.box.repository.entity.Box;
 import com.Joakim.boxinator.api.box.service.BoxService;
 import org.springframework.http.HttpStatus;
@@ -22,14 +22,13 @@ public class BoxController implements IBoxController {
 
     @Override
     @GetMapping("/boxes")
-    public ResponseEntity<List<BoxResponseDto>> getAllBoxes() {
+    public ResponseEntity<List<BoxDto>> getAllBoxes() {
         return new ResponseEntity<>(service.getAllBoxes(), HttpStatus.OK);
     }
-
-    //Todo
+    
     @Override
     @PostMapping("/box")
-    public ResponseEntity<Box> createBox(@RequestBody Box box) {
+    public ResponseEntity<BoxDto> createBox(@RequestBody BoxDto box) {
         return new ResponseEntity<>(service.addBox(box), HttpStatus.CREATED);
     }
 }

@@ -1,6 +1,6 @@
 package com.Joakim.boxinator.api.box.controller.dto;
 
-public class BoxResponseDto {
+public class BoxDto {
 
     private String name;
 
@@ -8,18 +8,15 @@ public class BoxResponseDto {
 
     private String color;
 
-    private String country;
-
     private double shippingCost;
 
-    public BoxResponseDto() {
+    public BoxDto() {
     }
 
-    public BoxResponseDto(String name, double weight, String color, String country, double shippingCost) {
+    public BoxDto(String name, double weight, String color, double shippingCost) {
         this.name = name;
         this.weight = weight;
         this.color = color;
-        this.country = country;
         this.shippingCost = shippingCost;
     }
 
@@ -45,14 +42,6 @@ public class BoxResponseDto {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public double getShippingCost() {
