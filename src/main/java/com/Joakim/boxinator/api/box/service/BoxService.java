@@ -1,5 +1,6 @@
 package com.Joakim.boxinator.api.box.service;
 
+import com.Joakim.boxinator.api.box.controller.dto.BoxResponseDto;
 import com.Joakim.boxinator.api.box.repository.BoxRepository;
 import com.Joakim.boxinator.api.box.repository.entity.Box;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class BoxService implements IBoxService {
     private final BoxRepository repository = new BoxRepository();
 
     @Override
-    public List<Box> getAllBoxes() {
+    public List<BoxResponseDto> getAllBoxes() {
         return repository.getAllBoxes();
     }
 
