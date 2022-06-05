@@ -1,5 +1,6 @@
 package com.Joakim.boxinator.api.box.repository;
 
+import com.Joakim.boxinator.api.box.controller.dto.BoxResponseDto;
 import com.Joakim.boxinator.api.box.repository.entity.Box;
 
 import java.sql.Connection;
@@ -15,22 +16,21 @@ public class BoxRepository implements IBoxRepository {
     private final String CONNECTION_URL = "jdbc:mysql://localhost:3306/boxinator";
 
     @Override
-    public List<Box> getAllBoxes() {
-        ArrayList<Box> boxList = new ArrayList<>();
+    public List<BoxResponseDto> getAllBoxes() {
+        List<BoxResponseDto> boxList = new ArrayList<>();
 
         try {
             Connection connection = DriverManager.getConnection(CONNECTION_URL, "root", "server");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT Id, Name, Weight, Color, Country, ShippingCost from Box");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT Name, Weight, Color, Country, ShippingCost from Box");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Box box = new Box(
-                        resultSet.getLong(1),
-                        resultSet.getString(2),
-                        resultSet.getDouble(3),
+                BoxResponseDto box = new BoxResponseDto(
+                        resultSet.getString(1),
+                        resultSet.getDouble(2),
+                        resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getDouble(6));
+                        resultSet.getDouble(5));
                 boxList.add(box);
             }
             System.out.println(boxList.get(0).getCountry());
@@ -47,14 +47,13 @@ public class BoxRepository implements IBoxRepository {
         try {
             Connection connection = DriverManager.getConnection(CONNECTION_URL, "root", "server");
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO Box(Id, Name, Weight, Color, Country, ShippingCost) VALUES(?,?,?,?,?,?)");
+                    connection.prepareStatement("INSERT INTO Box(Name, Weight, Color, Country, ShippingCost) VALUES(?,?,?,?,?)");
 
-            preparedStatement.setInt(1, Math.toIntExact(box.getId()));
-            preparedStatement.setString(2, box.getName());
-            preparedStatement.setDouble(3, box.getWeight());
-            preparedStatement.setString(4, box.getColor());
-            preparedStatement.setString(5, box.getCountry());
-            preparedStatement.setDouble(6, box.getShippingCost());
+            preparedStatement.setString(1, box.getName());
+            preparedStatement.setDouble(2, box.getWeight());
+            preparedStatement.setString(3, box.getColor());
+            preparedStatement.setString(4, box.getCountry());
+            preparedStatement.setDouble(5, box.getShippingCost());
             preparedStatement.executeUpdate();
         }
         catch (Exception ex) {      //Should be custom exception here instead
