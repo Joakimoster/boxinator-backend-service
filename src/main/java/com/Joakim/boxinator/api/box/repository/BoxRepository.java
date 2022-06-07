@@ -50,12 +50,13 @@ public class BoxRepository implements IBoxRepository {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/boxinator", "root", "server");
             PreparedStatement preparedStatement =
-                    conn.prepareStatement("INSERT INTO Box(Name, Weight, Color, ShippingCost) VALUES(?,?,?,?)");
+                    conn.prepareStatement("INSERT INTO Box(Name, Weight, Color, ShippingCost, Country) VALUES(?,?,?,?,?)");
 
             preparedStatement.setString(1, box.getName());
             preparedStatement.setDouble(2, box.getWeight());
             preparedStatement.setString(3, box.getColor());
             preparedStatement.setDouble(4, box.getShippingCost());
+            preparedStatement.setString(5, box.getCountry());
 
             preparedStatement.executeUpdate();
             conn.close();

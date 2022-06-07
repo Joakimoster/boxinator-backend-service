@@ -12,22 +12,26 @@ public class Box {
 
     private double shippingCost;
 
+    private String country;
+
     public Box() {
     }
 
-    public Box(Long id, String name, double weight, String color, double shippingCost) {
+    public Box(Long id, String name, double weight, String color, double shippingCost, String country) {
         this.id = id;
         this.name = name;
         this.weight = weight;
         this.color = color;
         this.shippingCost = shippingCost;
+        this.country = country;
     }
 
-    public Box(String name, double weight, String color, double shippingCost) {
+    public Box(String name, double weight, String color, double shippingCost, String country) {
         this.name = name;
         this.weight = weight;
         this.color = color;
         this.shippingCost = shippingCost;
+        this.country = country;
     }
 
     public Long getId() {
@@ -68,5 +72,13 @@ public class Box {
 
     public void setShippingCost(double shippingCost) {
         this.shippingCost = shippingCost;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

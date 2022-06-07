@@ -26,7 +26,6 @@ public class BoxController implements IBoxController {
         return new ResponseEntity<>(service.getAllBoxes(), HttpStatus.OK);
     }
 
-    //Todo
     @Override
     @PostMapping("/box")
     public ResponseEntity<Box> createBox(@RequestBody Box box) {

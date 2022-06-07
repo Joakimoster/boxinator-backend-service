@@ -3,6 +3,7 @@ package com.Joakim.boxinator.api.box.service;
 import com.Joakim.boxinator.api.box.controller.dto.BoxResponseDto;
 import com.Joakim.boxinator.api.box.repository.BoxRepository;
 import com.Joakim.boxinator.api.box.repository.entity.Box;
+import com.Joakim.boxinator.api.box.repository.entity.Country;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -68,7 +69,8 @@ class BoxServiceTest {
         box.setId(1L);
         box.setWeight(99.5);
         box.setColor("150, 150, 150");
-        box.setShippingCost(5);
+        box.setCountry("CHINA");
+        box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
         return box;
     }
 }

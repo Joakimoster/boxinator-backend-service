@@ -41,7 +41,7 @@ class BoxRepositoryTest {
                     mockResultset.getDouble(4));
             boxList.add(box);
         }
-        assertThat(boxList.get(0).getName()).isEqualTo("Tezev");
+        assertThat(boxList.get(0).getName()).isEqualTo("Kalle");    //May delete
         assertThat(boxList.size()).isNotNull();
     }
 
@@ -49,15 +49,15 @@ class BoxRepositoryTest {
     void addBox() throws SQLException {
         Box box = getBox();
         mockConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/boxinator", "root", "server");
-        mockStatement = mockConnection.prepareStatement("INSERT INTO Box(Name, Weight, Color, ShippingCost) VALUES(?,?,?,?)");
+        mockStatement = mockConnection.prepareStatement("INSERT INTO Box(Name, Weight, Color, ShippingCost, Country) VALUES(?,?,?,?,?)");
 
         mockStatement.setString(1, box.getName());
         mockStatement.setDouble(2, box.getWeight());
         mockStatement.setString(3, box.getColor());
         mockStatement.setDouble(4, box.getShippingCost());
+        mockStatement.setString(5, box.getCountry());
         mockStatement.executeUpdate();
 
-        assertThat(mockStatement.executeUpdate()).isNotNegative();
         assertThat(mockStatement.executeUpdate()).isNotNull();
     }
 
@@ -73,6 +73,7 @@ class BoxRepositoryTest {
         box.setWeight(99.5);
         box.setColor("150, 150, 150");
         box.setShippingCost(5);
+        box.setCountry("China");
         return box;
     }
 
