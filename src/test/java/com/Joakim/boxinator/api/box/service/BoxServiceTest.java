@@ -14,17 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class BoxServiceTest {
 
-    @Mock
-    private BoxRepository repository;
-
-    private BoxService service;
-
+    private final BoxRepository repository = mock(BoxRepository.class);
+    private BoxService service = mock(BoxService.class);
     private List<BoxResponseDto> boxList;
 
     @BeforeEach
@@ -63,7 +59,6 @@ class BoxServiceTest {
         BoxResponseDto box = new BoxResponseDto();
         box.setWeight(50.5);
         box.setColor("255, 255, 255");
-        box.setCountry("Sweden");
         box.setShippingCost(50);
         return box;
     }
@@ -73,7 +68,6 @@ class BoxServiceTest {
         box.setId(1L);
         box.setWeight(99.5);
         box.setColor("150, 150, 150");
-        box.setCountry("Norway");
         box.setShippingCost(5);
         return box;
     }
