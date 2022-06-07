@@ -3,6 +3,7 @@ package com.Joakim.boxinator.api.box.repository;
 import com.Joakim.boxinator.api.box.controller.dto.BoxResponseDto;
 import com.Joakim.boxinator.api.box.repository.entity.Box;
 import com.Joakim.boxinator.api.box.utils.DBConnectionHelper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class BoxRepository implements IBoxRepository {
 
     private DBConnectionHelper dbConnectionHelper;
