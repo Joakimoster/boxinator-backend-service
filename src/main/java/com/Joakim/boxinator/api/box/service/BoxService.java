@@ -10,7 +10,11 @@ import java.util.List;
 @Service
 public class BoxService implements IBoxService {
 
-    private final BoxRepository repository = new BoxRepository();
+    private final BoxRepository repository;
+
+    public BoxService(BoxRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public List<BoxResponseDto> getAllBoxes() {

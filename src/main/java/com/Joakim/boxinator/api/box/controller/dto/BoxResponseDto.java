@@ -8,18 +8,15 @@ public class BoxResponseDto {
 
     private String color;
 
-    private String country;
-
     private double shippingCost;
 
     public BoxResponseDto() {
     }
 
-    public BoxResponseDto(String name, double weight, String color, String country, double shippingCost) {
+    public BoxResponseDto(String name, double weight, String color, double shippingCost) {
         this.name = name;
         this.weight = weight;
         this.color = color;
-        this.country = country;
         this.shippingCost = shippingCost;
     }
 
@@ -45,14 +42,6 @@ public class BoxResponseDto {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public double getShippingCost() {
