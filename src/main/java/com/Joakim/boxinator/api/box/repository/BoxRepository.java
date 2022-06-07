@@ -2,26 +2,28 @@ package com.Joakim.boxinator.api.box.repository;
 
 import com.Joakim.boxinator.api.box.controller.dto.BoxResponseDto;
 import com.Joakim.boxinator.api.box.repository.entity.Box;
+import com.Joakim.boxinator.api.box.utils.DBConnectionHelper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BoxRepository implements IBoxRepository {
 
-    private final String CONNECTION_URL = "jdbc:mysql://localhost:3306/boxinator";
+    private DBConnectionHelper dbConnectionHelper;
+    private Connection conn;
 
     @Override
     public List<BoxResponseDto> getAllBoxes() {
         List<BoxResponseDto> boxList = new ArrayList<>();
 
         try {
-            Connection connection = DriverManager.getConnection(CONNECTION_URL, "root", "server");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT Name, Weight, Color, Country, ShippingCost from Box");
+            conn = DriverManager.getConnection(dbConnectionHelper.getCONNECTION_URL(), "root", "server");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT Name, Weight, Color, Country, ShippingCost from Box");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -33,10 +35,14 @@ public class BoxRepository implements IBoxRepository {
                         resultSet.getDouble(5));
                 boxList.add(box);
             }
-            System.out.println(boxList.get(0).getCountry());
         }
-        catch (Exception ex) {      //Should be custom exception here instead
-            System.out.println("Something went wrong..");
+        catch (SQLException ex) {
+            System.out.println(ex.getErrorCode());
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        finally {
+            dbConnectionHelper.closeDatabaseConnection(conn);
         }
         return boxList;
     }
@@ -45,9 +51,9 @@ public class BoxRepository implements IBoxRepository {
     public Box addBox(Box box) {
 
         try {
-            Connection connection = DriverManager.getConnection(CONNECTION_URL, "root", "server");
+            conn = DriverManager.getConnection(dbConnectionHelper.getCONNECTION_URL(), "root", "server");
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO Box(Name, Weight, Color, Country, ShippingCost) VALUES(?,?,?,?,?)");
+                    conn.prepareStatement("INSERT INTO Box(Name, Weight, Color, Country, ShippingCost) VALUES(?,?,?,?,?)");
 
             preparedStatement.setString(1, box.getName());
             preparedStatement.setDouble(2, box.getWeight());
@@ -56,8 +62,13 @@ public class BoxRepository implements IBoxRepository {
             preparedStatement.setDouble(5, box.getShippingCost());
             preparedStatement.executeUpdate();
         }
-        catch (Exception ex) {      //Should be custom exception here instead
-            System.out.println("Something went wrong..");
+        catch (SQLException ex) {
+            System.out.println(ex.getErrorCode());
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        finally {
+            dbConnectionHelper.closeDatabaseConnection(conn);
         }
         return box;
     }
