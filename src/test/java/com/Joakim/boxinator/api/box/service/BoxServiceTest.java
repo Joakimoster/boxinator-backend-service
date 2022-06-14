@@ -50,6 +50,17 @@ class BoxServiceTest {
         assertThat(capturedBox).isEqualTo(box);
     }
 
+    @Test
+    void canCalculateCorrectShippingCostWhenChinaIsBoxDestination() {
+        Box box = new Box();
+        box.setName("Test box");
+        box.setWeight(5.5);
+        box.setCountry("CHINA");
+        box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
+
+        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(5.5, "CHINA"));
+    }
+
     private List<BoxResponseDto> getBoxList() {
         List<BoxResponseDto> boxList = new ArrayList<>();
         boxList.add(getBoxResponseDto());
@@ -59,8 +70,8 @@ class BoxServiceTest {
     private BoxResponseDto getBoxResponseDto() {
         BoxResponseDto box = new BoxResponseDto();
         box.setWeight(50.5);
-        box.setColor("255, 255, 255");
-        box.setShippingCost(50);
+        box.setColor("#9c5454");
+        box.setShippingCost(100);
         return box;
     }
 
@@ -68,7 +79,7 @@ class BoxServiceTest {
         Box box = new Box();
         box.setId(1L);
         box.setWeight(99.5);
-        box.setColor("150, 150, 150");
+        box.setColor("#9c5454");
         box.setCountry("CHINA");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
         return box;

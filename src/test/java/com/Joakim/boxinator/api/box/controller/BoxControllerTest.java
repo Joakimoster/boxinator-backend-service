@@ -60,7 +60,7 @@ class BoxControllerTest {
         Box box = new Box();
         box.setId(1L);
         box.setWeight(99.5);
-        box.setColor("150, 150, 150");
+        box.setColor("#9c5454");
         box.setShippingCost(5);
         return box;
     }
@@ -69,7 +69,7 @@ class BoxControllerTest {
         BoxResponseDto box = new BoxResponseDto();
         box.setName("Joakims box");
         box.setWeight(50.5);
-        box.setColor("255, 255, 255");
+        box.setColor("#9c5454");
         box.setShippingCost(50);
         return box;
     }

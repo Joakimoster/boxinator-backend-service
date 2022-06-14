@@ -41,7 +41,6 @@ class BoxRepositoryTest {
                     mockResultset.getDouble(4));
             boxList.add(box);
         }
-        assertThat(boxList.get(0).getName()).isEqualTo("Kalle");    //May delete
         assertThat(boxList.size()).isNotNull();
     }
 
@@ -71,7 +70,7 @@ class BoxRepositoryTest {
         Box box = new Box();
         box.setName("Joakims box");
         box.setWeight(99.5);
-        box.setColor("150, 150, 150");
+        box.setColor("#9c5454");
         box.setShippingCost(5);
         box.setCountry("China");
         return box;
@@ -81,7 +80,7 @@ class BoxRepositoryTest {
         BoxResponseDto box = new BoxResponseDto();
         box.setName("New box name");
         box.setWeight(50.5);
-        box.setColor("255, 255, 255");
+        box.setColor("#9c5454");
         box.setShippingCost(50);
         return box;
     }

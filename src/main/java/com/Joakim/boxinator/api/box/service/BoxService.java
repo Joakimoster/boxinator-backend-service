@@ -24,14 +24,11 @@ public class BoxService implements IBoxService {
 
     @Override
     public Box addBox(Box box) {
-        double weight = box.getWeight();
-        String country = box.getCountry();
-        double shippingCost = calculateShippingCost(weight, country);
+        double shippingCost = calculateShippingCost(box.getWeight(), box.getCountry());
         box.setShippingCost(shippingCost);
         return repository.addBox(box);
     }
 
-    //TODO: Implement error handling (only capital letters working in postman
     public double calculateShippingCost(double weight, String country) {
         switch (country) {
             case "SWEDEN":
@@ -42,6 +39,7 @@ public class BoxService implements IBoxService {
                 return weight * Country.BRAZIL.getMultiplier();
             case "AUSTRALIA":
                 return weight * Country.AUSTRALIA.getMultiplier();
-        } return 0;
+        }
+        return 0;
     }
 }

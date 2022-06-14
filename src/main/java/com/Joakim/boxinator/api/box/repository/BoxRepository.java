@@ -16,13 +16,16 @@ import java.util.List;
 public class BoxRepository implements IBoxRepository {
 
     private Connection conn;
+    private final String connectionString = "jdbc:mysql://localhost:3306/boxinator";
+    private final String databaseUsername = "root";
+    private final String databasePassword = "server";
 
     @Override
     public List<BoxResponseDto> getAllBoxes() {
         List<BoxResponseDto> boxList = new ArrayList<>();
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/boxinator", "root", "server");
+            conn = DriverManager.getConnection(connectionString, databaseUsername, databasePassword);
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT Name, Weight, Color, ShippingCost from Box");
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -48,7 +51,7 @@ public class BoxRepository implements IBoxRepository {
     public Box addBox(Box box) {
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/boxinator", "root", "server");
+            conn = DriverManager.getConnection(connectionString, databaseUsername, databasePassword);
             PreparedStatement preparedStatement =
                     conn.prepareStatement("INSERT INTO Box(Name, Weight, Color, ShippingCost, Country) VALUES(?,?,?,?,?)");
 
