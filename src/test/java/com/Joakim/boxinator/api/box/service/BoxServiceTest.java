@@ -61,6 +61,39 @@ class BoxServiceTest {
         assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(5.5, "CHINA"));
     }
 
+    @Test
+    void canCalculateCorrectShippingCostWhenBrazilIsBoxDestination() {
+        Box box = new Box();
+        box.setName("Test box");
+        box.setWeight(10.2);
+        box.setCountry("BRAZIL");
+        box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
+
+        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(10.2, "BRAZIL"));
+    }
+
+    @Test
+    void canCalculateCorrectShippingCostWhenSwedenIsBoxDestination() {
+        Box box = new Box();
+        box.setName("Test box");
+        box.setWeight(3.4);
+        box.setCountry("SWEDEN");
+        box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
+
+        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(3.4, "SWEDEN"));
+    }
+
+    @Test
+    void canCalculateCorrectShippingCostWhenAustraliaIsBoxDestination() {
+        Box box = new Box();
+        box.setName("Test box");
+        box.setWeight(50.2);
+        box.setCountry("AUSTRALIA");
+        box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
+
+        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(50.2, "AUSTRALIA"));
+    }
+
     private List<BoxResponseDto> getBoxList() {
         List<BoxResponseDto> boxList = new ArrayList<>();
         boxList.add(getBoxResponseDto());
