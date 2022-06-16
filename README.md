@@ -16,7 +16,7 @@ The project is setup with a Java spring boot application which serves as a REST 
   
   1. Navigate through the folders to the "application.properties" file which will be located at boxinator\src\main\resources. Here you will need to swap to       spring.datasource username and password to match your MySql credentials.
   2. Navigate to api/box repository file which will be located at boxinator\src\main\java\com\Joakim\boxinator\api\box\repository and replace the Username and password String variables to match your credentials same as aforementied step. 
-  3. Start the backend by following command in the terminal when you are in the src folder: mvn spring-boot:run (maven required), else shortcommand "alt+f10". 
+  3. Start the backend by following command in the terminal when you are in the src folder: mvn spring-boot:run, (maven required) else shortcommand "alt+f10". 
 
   ### The frontend of this project is located at https://github.com/Joakimoster/boxinator-frontend. Follow the steps to get the front-end up and running.
 
