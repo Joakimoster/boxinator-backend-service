@@ -4,9 +4,9 @@ This repository presents a small software application where the user is able to 
 ## Setup description
 The project is setup with a Java spring boot application which serves as a REST api together with MySQL database for storing data. React 18 is used as a front framework together with Redux. In order to make this project up and running we need to do a couple of manual steps to get started.
   
-  #Create and setup the MySql database. This step require some manual steps and work to get running. 
+  ### Create and setup the MySql database. This step require some manual steps to get running. 
   
-  1. Begin with open up MySql shell/command line and use your credentials.
+  1. Begin with open up MySql shell/command line and enter your credentials.
   2. To create a new database for the project use following command: CREATE DATABASE IF NOT EXISTS boxinator;
   3. Follow aforementioned step by entering this command: USE boxinator;
   4. In the boxinator repository page there is a database folder with a script.sql file containing syntax for creating a table. Copy that and use it in the shell.
