@@ -3,12 +3,10 @@ package com.Joakim.boxinator.api.box.service;
 import com.Joakim.boxinator.api.box.controller.dto.BoxResponseDto;
 import com.Joakim.boxinator.api.box.repository.BoxRepository;
 import com.Joakim.boxinator.api.box.repository.entity.Box;
-import com.Joakim.boxinator.api.box.repository.entity.Country;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -22,6 +20,7 @@ class BoxServiceTest {
 
     private final BoxRepository repository = mock(BoxRepository.class);
     private BoxService service = mock(BoxService.class);
+
     private List<BoxResponseDto> boxList;
 
     @BeforeEach
@@ -57,7 +56,6 @@ class BoxServiceTest {
         box.setWeight(5.5);
         box.setCountry("CHINA");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
-
         assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(5.5, "CHINA"));
     }
 
@@ -68,7 +66,6 @@ class BoxServiceTest {
         box.setWeight(10.2);
         box.setCountry("BRAZIL");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
-
         assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(10.2, "BRAZIL"));
     }
 
@@ -79,7 +76,6 @@ class BoxServiceTest {
         box.setWeight(3.4);
         box.setCountry("SWEDEN");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
-
         assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(3.4, "SWEDEN"));
     }
 
@@ -90,7 +86,6 @@ class BoxServiceTest {
         box.setWeight(50.2);
         box.setCountry("AUSTRALIA");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
-
         assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(50.2, "AUSTRALIA"));
     }
 
