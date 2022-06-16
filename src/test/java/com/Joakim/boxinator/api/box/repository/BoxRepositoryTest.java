@@ -2,20 +2,13 @@ package com.Joakim.boxinator.api.box.repository;
 
 import com.Joakim.boxinator.api.box.controller.dto.BoxResponseDto;
 import com.Joakim.boxinator.api.box.repository.entity.Box;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class BoxRepositoryTest {
@@ -23,8 +16,6 @@ class BoxRepositoryTest {
     private ResultSet mockResultset = mock(ResultSet.class);
     private Connection mockConnection = mock(Connection.class);
     private PreparedStatement mockStatement = mock(PreparedStatement.class);
-
-    private BoxRepository repository = mock(BoxRepository.class);
 
     @Test
     void getAllBoxes() throws SQLException {
