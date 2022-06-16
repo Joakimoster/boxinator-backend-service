@@ -15,8 +15,8 @@ The project is setup with a Java spring boot application which serves as a REST 
   ### Initialize backend and connect to Database. The Java Spring boot application needs following steps to connect towards the database.
   
   1. Navigate through the folders in the repository to the "application.properties" file which will be located at boxinator\src\main\resources. Here you will need to swap the variables spring.datasource username and password to match your MySql credentials.
-  2. Navigate to api/box repository file which will be located at boxinator\src\main\java\com\Joakim\boxinator\api\box\repository and replace the Username and password String variables to match your credentials same as aforementied step. 
-  3. Navigate to the test folder and into api/box repository test file and replace the same String variables for username and password to match the same credentials as you replaced in the aforementied step.
+  2. Navigate to api/box/repository/BoxRepository file which will be located at boxinator\src\main\java\com\Joakim\boxinator\api\box\repository and replace the Username and password String variables to match your credentials same as aforementied step. 
+  3. Navigate to the test folder and into api/boxrepository/BoxrepositoryTest test file and replace the same String variables for username and password to match the same credentials as you replaced in the aforementied step.
   4. Start the backend by following command in the terminal when you are in the src folder: mvn spring-boot:run, (maven required) else shortcommand "alt+f10". 
   5. To run tests for the backend, run this command: mvn clean test from the boxinator folder.
 
