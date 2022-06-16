@@ -53,40 +53,40 @@ class BoxServiceTest {
     void canCalculateCorrectShippingCostWhenChinaIsBoxDestination() {
         Box box = new Box();
         box.setName("Test box");
-        box.setWeight(5.5);
+        box.setWeight(50);
         box.setCountry("CHINA");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
-        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(5.5, "CHINA"));
+        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(50, "CHINA"));
     }
 
     @Test
     void canCalculateCorrectShippingCostWhenBrazilIsBoxDestination() {
         Box box = new Box();
         box.setName("Test box");
-        box.setWeight(10.2);
+        box.setWeight(10);
         box.setCountry("BRAZIL");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
-        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(10.2, "BRAZIL"));
+        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(10, "BRAZIL"));
     }
 
     @Test
     void canCalculateCorrectShippingCostWhenSwedenIsBoxDestination() {
         Box box = new Box();
         box.setName("Test box");
-        box.setWeight(3.4);
+        box.setWeight(33);
         box.setCountry("SWEDEN");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
-        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(3.4, "SWEDEN"));
+        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(33, "SWEDEN"));
     }
 
     @Test
     void canCalculateCorrectShippingCostWhenAustraliaIsBoxDestination() {
         Box box = new Box();
         box.setName("Test box");
-        box.setWeight(50.2);
+        box.setWeight(79);
         box.setCountry("AUSTRALIA");
         box.setShippingCost(service.calculateShippingCost(box.getWeight(), box.getCountry()));
-        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(50.2, "AUSTRALIA"));
+        assertThat(box.getShippingCost()).isEqualTo(service.calculateShippingCost(79, "AUSTRALIA"));
     }
 
     private List<BoxResponseDto> getBoxList() {
