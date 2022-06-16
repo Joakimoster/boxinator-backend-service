@@ -17,10 +17,14 @@ class BoxRepositoryTest {
     private Connection mockConnection = mock(Connection.class);
     private PreparedStatement mockStatement = mock(PreparedStatement.class);
 
+    private final String connectionString = "jdbc:mysql://localhost:3306/boxinator";
+    private final String databaseUsername = "root";
+    private final String databasePassword = "server";
+
     @Test
     void getAllBoxes() throws SQLException {
         List<BoxResponseDto> boxList = new ArrayList<>();
-        mockConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/boxinator", "root", "server");
+        mockConnection = DriverManager.getConnection(connectionString, databaseUsername, databasePassword);
         mockStatement = mockConnection.prepareStatement("SELECT Name, Weight, Color, ShippingCost from Box");
         mockResultset = mockStatement.executeQuery();
 
@@ -38,7 +42,7 @@ class BoxRepositoryTest {
     @Test
     void addBox() throws SQLException {
         Box box = getBox();
-        mockConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/boxinator", "root", "server");
+        mockConnection = DriverManager.getConnection(connectionString, databaseUsername, databasePassword);
         mockStatement = mockConnection.prepareStatement("INSERT INTO Box(Name, Weight, Color, ShippingCost, Country) VALUES(?,?,?,?,?)");
 
         mockStatement.setString(1, box.getName());
@@ -46,7 +50,6 @@ class BoxRepositoryTest {
         mockStatement.setString(3, box.getColor());
         mockStatement.setDouble(4, box.getShippingCost());
         mockStatement.setString(5, box.getCountry());
-        mockStatement.executeUpdate();
 
         assertThat(mockStatement.executeUpdate()).isNotNull();
     }
@@ -62,7 +65,7 @@ class BoxRepositoryTest {
         box.setName("Joakims box");
         box.setWeight(99.5);
         box.setColor("#9c5454");
-        box.setShippingCost(5);
+        box.setShippingCost(350);
         box.setCountry("China");
         return box;
     }

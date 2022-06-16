@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("api/box/v1")
+@RequestMapping("api/boxinator/v1")
 public class BoxController implements IBoxController {
 
     private final BoxService service;
